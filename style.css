@@ -1,0 +1,669 @@
+:root {
+  --bg: #fffdf9;
+  --paper: #ffffff;
+  --ink: #2d2926;
+  --muted: #7c7167;
+  --line: #eee4da;
+  --accent: #b98b5d;
+  --accent-dark: #8a623e;
+  --soft: #f6efe7;
+  --shadow: 0 18px 45px rgba(68, 50, 32, .10);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.8;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6vw;
+  background: rgba(255, 253, 249, .86);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.site-nav { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
+.site-nav a:hover { color: var(--accent-dark); }
+.instagram-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+.instagram-nav::before {
+  content: "◎";
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  font-size: 10px;
+  line-height: 1;
+}
+.nav-toggle { display: none; border: 0; background: transparent; font-size: 24px; }
+
+.hero {
+  min-height: 82vh;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 6vw;
+  padding: 7vw 8vw 5vw;
+}
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+h1, h2, h3 {
+  font-family: 'Noto Serif JP', serif;
+  line-height: 1.45;
+  margin: 0 0 18px;
+}
+h1 { font-size: clamp(40px, 6vw, 76px); letter-spacing: .05em; }
+h2 { font-size: clamp(28px, 4vw, 42px); }
+h3 { font-size: 22px; }
+.lead { color: var(--muted); font-size: 18px; max-width: 520px; }
+.hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid var(--accent);
+  transition: .2s;
+}
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.secondary { color: var(--accent-dark); background: transparent; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+.photo-placeholder {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed #d4b99d;
+  background: linear-gradient(135deg, #fff, var(--soft));
+  color: #b49a80;
+  border-radius: 28px;
+  font-weight: 700;
+}
+.photo-placeholder.large { min-height: 560px; border-radius: 42px; box-shadow: var(--shadow); }
+
+.section { padding: 80px 8vw; }
+.intro {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--muted);
+  font-size: 18px;
+}
+.section-title { text-align: center; max-width: 720px; margin: 0 auto 42px; }
+.section-title p:last-child { color: var(--muted); }
+.category-title { margin: 48px 0 22px; border-left: 4px solid var(--accent); padding-left: 14px; }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+.product-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(68, 50, 32, .06);
+  transition: .2s;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.product-image {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: var(--soft);
+  color: #b49a80;
+  font-weight: 700;
+}
+.product-body { padding: 18px; }
+.product-body h4 { margin: 0 0 6px; font-size: 17px; }
+.product-body p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+.price { font-weight: 700; color: var(--accent-dark); }
+.card-actions { display: flex; gap: 8px; margin-top: 14px; }
+.card-actions button, .card-actions a {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 9px 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+.card-actions a { background: var(--accent); color: white; border-color: var(--accent); }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr .8fr;
+  gap: 40px;
+  align-items: center;
+  background: var(--soft);
+}
+.note-card {
+  background: white;
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.faq details {
+  max-width: 820px;
+  margin: 14px auto;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+.faq summary { font-weight: 700; cursor: pointer; }
+.faq p { color: var(--muted); }
+.contact { text-align: center; background: var(--soft); }
+.site-footer {
+  padding: 70px 8vw 34px;
+  text-align: center;
+  color: var(--muted);
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+.instagram-footer {
+  max-width: 620px;
+  margin: 0 auto 52px;
+}
+.instagram-footer h2 { margin-bottom: 10px; }
+.instagram-footer > p:not(.eyebrow) { margin: 0 0 8px; }
+.instagram-handle {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 24px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+.instagram-handle:hover { text-decoration: underline; }
+.instagram-button { min-width: 190px; }
+.copyright {
+  margin: 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+#productDialog {
+  width: min(680px, calc(100% - 32px));
+  border: 0;
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+}
+#productDialog::backdrop { background: rgba(45, 41, 38, .35); backdrop-filter: blur(4px); }
+.dialog-close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--soft);
+  font-size: 22px;
+  cursor: pointer;
+}
+.dialog-photo { min-height: 280px; margin-bottom: 22px; }
+
+@media (max-width: 980px) {
+  .hero, .split { grid-template-columns: 1fr; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-placeholder.large { min-height: 360px; }
+}
+@media (max-width: 680px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 68px;
+    flex-direction: column;
+    padding: 18px 6vw;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero { padding: 54px 6vw; }
+  .section { padding: 60px 6vw; }
+  .product-grid, .gallery-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 40px; }
+}
+
+/* 商品写真を追加したときの表示 */
+.product-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.product-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #b49a80;
+  font-weight: 700;
+  background: var(--soft);
+}
+.dialog-photo-wrap {
+  overflow: hidden;
+  min-height: 280px;
+  margin-bottom: 22px;
+  border-radius: 24px;
+  background: var(--soft);
+}
+.dialog-photo-wrap .product-image-placeholder,
+.dialog-photo-wrap .product-photo {
+  min-height: 280px;
+}
+
+
+/* 検索対策版で追加した説明セクション */
+.seo-guide {
+  max-width: 900px;
+}
+.seo-guide > p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 2;
+}
+
+/* メイン写真・作品ギャラリー */
+.hero-visual {
+  min-width: 0;
+}
+.hero-photo {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  object-position: center 58%;
+  border-radius: 42px;
+  box-shadow: var(--shadow);
+}
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 10px 24px rgba(68, 50, 32, .06);
+}
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.025);
+}
+.gallery-item figcaption {
+  padding: 13px 16px 15px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+@media (max-width: 980px) {
+  .hero-photo { height: 440px; }
+}
+@media (max-width: 680px) {
+  .hero-photo {
+    height: 420px;
+    border-radius: 28px;
+  }
+  .gallery-item img { aspect-ratio: 1 / 1; }
+  /* ========================================
+   齊藤商店 購入ページ
+======================================== */
+
+.purchase-body {
+  margin: 0;
+  background: #fdfaf5;
+  color: #2d2926;
+}
+
+.purchase-header {
+  height: 86px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(253, 250, 245, 0.96);
+  border-bottom: 1px solid #e9e0d5;
+  box-sizing: border-box;
+}
+
+.purchase-logo {
+  color: #2d2926;
+  text-decoration: none;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 24px;
+  letter-spacing: 0.12em;
+}
+
+.purchase-header-link {
+  color: #78695e;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.purchase-header-link:hover,
+.purchase-back:hover,
+.purchase-breadcrumb a:hover {
+  opacity: 0.65;
+}
+
+.purchase-main {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 38px 6% 80px;
+}
+
+.purchase-breadcrumb {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 42px;
+  color: #8b7b70;
+  font-size: 13px;
+}
+
+.purchase-breadcrumb a {
+  color: #8b7b70;
+  text-decoration: none;
+}
+
+.purchase-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(400px, 0.95fr);
+  gap: 70px;
+  align-items: start;
+}
+
+/* 商品写真 */
+
+.purchase-image-frame {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f4eee6;
+  box-shadow: 0 18px 45px rgba(83, 65, 48, 0.10);
+}
+
+.purchase-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.purchase-back {
+  display: inline-block;
+  margin-top: 28px;
+  color: #9b673e;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* 右側 */
+
+.purchase-content {
+  padding-top: 4px;
+}
+
+.purchase-eyebrow {
+  margin: 0 0 14px;
+  color: #a56d3f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.purchase-content > h1 {
+  margin: 0;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.purchase-title-line {
+  width: 60px;
+  height: 1px;
+  margin: 24px 0 26px;
+  background: #b67a49;
+}
+
+.purchase-lead {
+  margin-bottom: 28px;
+  color: #685e57;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* 購入カード */
+
+.purchase-card {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid #eadfd2;
+  border-radius: 20px;
+  box-shadow: 0 16px 45px rgba(78, 59, 43, 0.07);
+}
+
+.purchase-product-heading {
+  padding: 30px 32px 24px;
+}
+
+.purchase-product-heading h2 {
+  margin: 0 0 12px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.purchase-product-heading p {
+  margin: 0;
+  color: #766a61;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.purchase-row {
+  min-height: 74px;
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eadfd2;
+}
+
+.purchase-row > span:first-child,
+.purchase-row label {
+  font-weight: 600;
+}
+
+.purchase-price-row strong {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.purchase-shipping {
+  margin: 0 32px;
+  padding: 20px 0;
+  border-top: 1px solid #eadfd2;
+}
+
+.purchase-shipping > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  padding: 8px 0;
+  color: #675c54;
+  font-size: 14px;
+}
+
+.purchase-info-label {
+  font-weight: 600;
+  color: #423b36;
+}
+
+.purchase-quantity {
+  min-width: 100px;
+  padding: 10px 14px;
+  border: 1px solid #dfd2c4;
+  border-radius: 999px;
+  background: #f8f2eb;
+  color: #2d2926;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.purchase-total-row strong {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+.purchase-checkout-button {
+  width: calc(100% - 64px);
+  min-height: 66px;
+  margin: 4px 32px 30px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  border-radius: 999px;
+  background: #c58d56;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 10px 24px rgba(169, 112, 60, 0.18);
+}
+
+.purchase-checkout-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+  box-shadow: 0 14px 30px rgba(169, 112, 60, 0.23);
+}
+
+/* スマートフォン */
+
+@media (max-width: 850px) {
+
+  .purchase-header {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .purchase-logo {
+    font-size: 20px;
+  }
+
+  .purchase-main {
+    padding: 24px 20px 60px;
+  }
+
+  .purchase-breadcrumb {
+    margin-bottom: 25px;
+  }
+
+  .purchase-layout {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .purchase-image-frame {
+    max-height: 520px;
+  }
+
+  .purchase-back {
+    margin-top: 18px;
+  }
+
+  .purchase-content > h1 {
+    font-size: 38px;
+  }
+
+  .purchase-product-heading {
+    padding: 25px 22px 20px;
+  }
+
+  .purchase-product-heading h2 {
+    font-size: 25px;
+  }
+
+  .purchase-row,
+  .purchase-shipping {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+
+  .purchase-shipping > div {
+    grid-template-columns: 90px 1fr;
+  }
+
+  .purchase-price-row strong,
+  .purchase-total-row strong {
+    font-size: 29px;
+  }
+
+  .purchase-checkout-button {
+    width: calc(100% - 44px);
+    margin: 4px 22px 24px;
+  }
+}
+}

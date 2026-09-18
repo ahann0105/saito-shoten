@@ -1,0 +1,25 @@
+齊藤商店 検索対策版
+
+【追加・更新した内容】
+・ページタイトルと説明文を「レジンチャーム」検索向けに調整
+・SNS共有用のOGP基本情報を追加
+・検索エンジン向け構造化データ（WebSite／商品一覧）を追加
+・レジンチャームの説明セクションを追加
+・robots.txt と sitemap.xml を追加
+・お問い合わせ文を「メルカリの商品ページのコメントから」に変更
+
+【公開前に必ず行うこと】
+1. Netlifyなどでサイトを公開し、正式URLを決める
+2. robots.txt の https://YOUR-SITE-URL を正式URLに置き換える
+3. sitemap.xml の https://YOUR-SITE-URL を正式URLに置き換える
+4. index.html の <head> 内に次の2行を追加する
+   <link rel="canonical" href="正式URL/">
+   <meta property="og:url" content="正式URL/">
+5. トップ画像が完成したら、OGP画像も設定する
+   <meta property="og:image" content="正式URL/images/og-image.jpg">
+
+【公開後】
+Google Search Consoleに正式URLを登録し、sitemap.xmlを送信してください。
+
+【注意】
+検索上位表示を保証するものではありません。公開後に作品写真、商品説明、個別商品ページを充実させるほど検索に評価されやすい構成になります。

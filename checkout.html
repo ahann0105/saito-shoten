@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お客様情報入力 | 齊藤商店</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      background: #fdfaf5;
+      color: #2d2926;
+    }
+
+    .checkout-header {
+      height: 86px;
+      padding: 0 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e9e0d5;
+    }
+
+    .checkout-logo {
+      color: #2d2926;
+      text-decoration: none;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+    }
+
+    .checkout-back {
+      color: #78695e;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .checkout-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 45px 24px 80px;
+    }
+
+    .checkout-eyebrow {
+      margin: 0 0 12px;
+      color: #a56d3f;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+    }
+
+    .checkout-main h1 {
+      margin: 0;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: 42px;
+      font-weight: 500;
+    }
+
+    .checkout-line {
+      width: 60px;
+      height: 1px;
+      margin: 22px 0 35px;
+      background: #b67a49;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 45px;
+      align-items: start;
+    }
+
+    .checkout-card {
+      padding: 32px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid #eadfd2;
+      border-radius: 22px;
+      box-shadow: 0 16px 45px rgba(78,59,43,0.06);
+    }
+
+    .checkout-card h2 {
+      margin: 0 0 26px;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .required {
+      margin-left: 7px;
+      color: #a56d3f;
+      font-size: 11px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 15px;
+      box-sizing: border-box;
+      border: 1px solid #ddd0c3;
+      border-radius: 10px;
+      background: #fffdf9;
+      color: #2d2926;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #c4935f;
+    }
+
+    .address-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eadfd2;
+      font-size: 14px;
+    }
+
+    .order-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+    }
+
+    .order-total strong {
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: 28px;
+    }
+
+    .payment-button {
+      width: 100%;
+      margin-top: 28px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 0;
+      border-radius: 999px;
+      background: #c4935f;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .checkout-note {
+      margin: 18px 0 0;
+      color: #7a6d64;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 800px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-main h1 {
+        font-size: 34px;
+      }
+
+      .address-row {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="checkout-header">
+    <a href="index.html" class="checkout-logo">齊藤商店</a>
+    <a href="javascript:history.back()" class="checkout-back">← 購入ページに戻る</a>
+  </header>
+
+  <main class="checkout-main">
+
+    <p class="checkout-eyebrow">ORDER INFORMATION</p>
+    <h1>お客様情報入力</h1>
+    <div class="checkout-line"></div>
+
+    <div class="checkout-layout">
+
+      <section class="checkout-card">
+        <h2>配送先情報</h2>
+
+        <form id="customerForm">
+
+          <div class="form-group">
+            <label>
+              お名前
+              <span class="required">必須</span>
+            </label>
+            <input type="text" id="customerName" required>
+          </div>
+
+          <div class="form-group">
+            <label>
+              メールアドレス
+              <span class="required">必須</span>
+            </label>
+            <input type="email" id="customerEmail" required>
+          </div>
+
+          <div class="form-group">
+            <label>
+              電話番号
+              <span class="required">必須</span>
+            </label>
+            <input
+              type="tel"
+              id="customerPhone"
+              placeholder="09012345678"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>
+              郵便番号
+              <span class="required">必須</span>
+            </label>
+            <input
+              type="text"
+              id="postalCode"
+              placeholder="4300000"
+              inputmode="numeric"
+              required
+            >
+          </div>
+
+          <div class="address-row">
+            <div class="form-group">
+              <label>
+                都道府県
+                <span class="required">必須</span>
+              </label>
+              <input type="text" id="prefecture" required>
+            </div>
+
+            <div class="form-group">
+              <label>
+                市区町村
+                <span class="required">必須</span>
+              </label>
+              <input type="text" id="city" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              番地
+              <span class="required">必須</span>
+            </label>
+            <input type="text" id="address1" required>
+          </div>
+
+          <div class="form-group">
+            <label>建物名・部屋番号</label>
+            <input type="text" id="address2">
+          </div>
+
+        </form>
+      </section>
+
+
+      <aside class="checkout-card">
+        <h2>ご注文内容</h2>
+
+        <div class="order-row">
+          <span>商品</span>
+          <strong id="summaryProduct">－</strong>
+        </div>
+
+        <div class="order-row">
+          <span>数量</span>
+          <strong id="summaryQuantity">1個</strong>
+        </div>
+
+        <div class="order-row">
+          <span>送料</span>
+          <strong>無料</strong>
+        </div>
+
+        <div class="order-total">
+          <span>合計金額</span>
+          <strong id="summaryTotal">550円</strong>
+        </div>
+
+        <button
+          type="submit"
+          form="customerForm"
+          class="payment-button"
+        >
+          <span>決済へ進む</span>
+          <span>→</span>
+        </button>
+
+        <p class="checkout-note">
+          入力内容をご確認のうえ、決済へお進みください。
+        </p>
+      </aside>
+
+    </div>
+  </main>
+
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const product =
+      params.get('product') || 'ヨーヨー作品 01';
+
+    const quantity =
+      Number(params.get('quantity')) || 1;
+
+    const price =
+      Number(params.get('price')) || 550;
+
+    const total = price * quantity;
+
+    document.getElementById('summaryProduct').textContent =
+      product;
+
+    document.getElementById('summaryQuantity').textContent =
+      `${quantity}個`;
+
+    document.getElementById('summaryTotal').textContent =
+      `${total.toLocaleString()}円`;
+
+    document
+      .getElementById('customerForm')
+      .addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        alert('次のステップでStripe決済に接続します。');
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご購入 | 齊藤商店</title>
+  <link rel="stylesheet" href="style.css">
+<style>
+  .purchase-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 70px !important;
+  }
+
+  .purchase-visual {
+    transform: translateY(150px);
+}
+
+  .purchase-main {
+    max-width: 1320px !important;
+    margin: 0 auto !important;
+    padding: 38px 6% 80px !important;
+  }
+
+  .purchase-image-frame {
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    overflow: hidden !important;
+    border-radius: 24px !important;
+  }
+  /* ===== 購入ページ 最終デザイン調整 ===== */
+
+.purchase-content {
+  padding-top: 18px;
+}
+
+/* 商品情報カード */
+.purchase-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #eadfd2;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(78, 59, 43, 0.07);
+}
+
+/* 商品名・説明 */
+.purchase-product-heading {
+  padding: 30px 32px 24px;
+}
+
+.purchase-product-heading h2 {
+  margin: 0 0 12px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.purchase-product-heading p {
+  margin: 0;
+  color: #766a61;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 価格・数量・合計 */
+.purchase-row {
+  min-height: 72px;
+  margin: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eadfd2;
+}
+
+.purchase-price-row strong {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.purchase-total-row strong {
+  font-size: 24px;
+}
+
+/* 送料・発送目安 */
+.purchase-shipping {
+  margin: 0 32px;
+  padding: 18px 0;
+  border-top: 1px solid #eadfd2;
+}
+
+.purchase-shipping > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  padding: 7px 0;
+  font-size: 14px;
+}
+
+.purchase-info-label {
+  font-weight: 600;
+  color: #423b36;
+}
+
+/* 数量選択 */
+.purchase-quantity {
+  min-width: 90px;
+  padding: 10px 14px;
+  border: 1px solid #d8c5b2;
+  border-radius: 10px;
+  background: #fffdf9;
+  color: #2d2926;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* 購入ボタン */
+.purchase-checkout-button {
+  width: calc(100% - 64px);
+  margin: 6px 32px 32px;
+  padding: 17px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #c4935f;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.purchase-checkout-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.88;
+}
+
+/* 商品写真 */
+.purchase-image-frame {
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(83, 65, 48, 0.10);
+}
+
+.purchase-image-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* 商品一覧へ戻る */
+.purchase-back {
+  display: inline-block;
+  margin-top: 24px;
+  color: #9b673e;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.purchase-back:hover {
+  opacity: 0.65;
+}
+/* ===== 購入ページ ヘッダー仕上げ ===== */
+
+.purchase-header {
+    width: 100%;
+    height: 88px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: rgba(253, 250, 245, 0.96);
+    border-bottom: 1px solid #e9e0d5;
+}
+
+.purchase-logo {
+  color: #2d2926;
+  text-decoration: none;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.purchase-header-link {
+  color: #78695e;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s ease;
+}
+
+.purchase-header-link::after {
+  content: " →";
+  margin-left: 5px;
+}
+
+.purchase-logo:hover,
+.purchase-header-link:hover {
+  opacity: 0.6;
+}
+/* 購入ページ ヘッダー最終設定 */
+body.purchase-body .purchase-header {
+    width: 100%;
+    height: 88px;
+    padding: 0 7%;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background: #fdfaf5;
+    border-bottom: 1px solid #e9e0d5;
+}
+
+body.purchase-body .purchase-header .purchase-logo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #2d2926 !important;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+}
+
+body.purchase-body .purchase-header .purchase-header-link {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #78695e !important;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+body.purchase-body .purchase-header .purchase-header-link::after {
+    content: " →";
+}
+</style>
+</head>
+
+<body class="purchase-body">
+
+  <header class="purchase-header">
+    <a href="index.html" class="purchase-logo">齊藤商店</a>
+    <a href="index.html#products" class="purchase-header-link">商品一覧へ</a>
+  </header>
+
+  <main class="purchase-main">
+
+    <div class="purchase-breadcrumb">
+      <a href="index.html">ホーム</a>
+      <span>›</span>
+      <span>ご購入手続き</span>
+    </div>
+
+    <div class="purchase-layout">
+
+      <!-- 商品画像 -->
+      <section class="purchase-visual">
+        <div class="purchase-image-frame">
+          <img id="purchaseImage" src="" alt="">
+        </div>
+
+        <a href="index.html#products" class="purchase-back">
+          ← 商品一覧に戻る
+        </a>
+      </section>
+
+      <!-- 購入情報 -->
+      <section class="purchase-content">
+
+        <p class="purchase-eyebrow">HANDMADE RESIN COLLECTION</p>
+
+        <h1>ご購入手続き</h1>
+
+        <div class="purchase-title-line"></div>
+
+        <p class="purchase-lead">
+          下記の内容をご確認のうえ、購入手続きへお進みください。
+        </p>
+
+        <div class="purchase-card">
+
+          <div class="purchase-product-heading">
+            <h2 id="productName">ヨーヨー作品</h2>
+            <p id="productDescription"></p>
+          </div>
+
+          <div class="purchase-row purchase-price-row">
+            <span>価格</span>
+            <strong id="productPrice">550円</strong>
+          </div>
+
+          <div class="purchase-shipping">
+            <div>
+              <span class="purchase-info-label">送料</span>
+              <span>無料</span>
+            </div>
+
+            <div>
+              <span class="purchase-info-label">発送目安</span>
+              <span>決済確認後、約1週間</span>
+            </div>
+          </div>
+
+          <div class="purchase-row">
+            <label for="quantity">数量</label>
+
+            <select id="quantity" class="purchase-quantity">
+              <option value="1">1個</option>
+              <option value="2">2個</option>
+              <option value="3">3個</option>
+              <option value="4">4個</option>
+              <option value="5">5個</option>
+            </select>
+          </div>
+
+          <div class="purchase-row purchase-total-row">
+            <span>合計金額</span>
+            <strong id="totalPrice">550円</strong>
+          </div>
+
+          <button
+            type="button"
+            id="checkoutButton"
+            class="purchase-checkout-button"
+          >
+            <span>購入手続きへ進む</span>
+            <span>→</span>
+          </button>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const productName =
+      params.get('product') || 'ヨーヨー作品 01';
+
+    const priceText =
+      params.get('price') || '550円';
+
+    const price =
+      Number(priceText.replace(/[^0-9]/g, '')) || 550;
+
+
+    const products = {
+      'ヨーヨー作品 01': {
+        image: 'images/yoyo01.jpeg',
+        description: 'くすみ水色×ブルーのヨーヨーモチーフのレジンチャームです。'
+      },
+
+      'ヨーヨー作品 02': {
+        image: 'images/yoyo02.jpeg',
+        description: 'くすみブルー×クリアのヨーヨーモチーフのレジンチャームです。'
+      },
+
+      'ヨーヨー作品 03': {
+        image: 'images/yoyo03.jpeg',
+        description: 'クリアブルー×水色のヨーヨーモチーフのレジンチャームです。'
+      },
+
+      'ヨーヨー作品 04': {
+        image: 'images/yoyo04.jpeg',
+        description: 'くすみクリア×赤（ピンク）のヨーヨーモチーフのレジンチャームです。'
+      },
+
+      'ヨーヨー作品 05': {
+        image: 'images/yoyo05.jpeg',
+        description: 'くすみピンク×黄色のヨーヨーモチーフのレジンチャームです。'
+      }
+    };
+
+
+    const selectedProduct =
+      products[productName] || products['ヨーヨー作品 01'];
+
+
+    const productNameElement =
+      document.getElementById('productName');
+
+    const productDescriptionElement =
+      document.getElementById('productDescription');
+
+    const productPriceElement =
+      document.getElementById('productPrice');
+
+    const productImageElement =
+      document.getElementById('purchaseImage');
+
+    const quantityElement =
+      document.getElementById('quantity');
+
+    const totalPriceElement =
+      document.getElementById('totalPrice');
+
+
+    productNameElement.textContent = productName;
+
+    productDescriptionElement.textContent =
+      selectedProduct.description;
+
+    productPriceElement.textContent =
+      `${price.toLocaleString()}円`;
+
+    productImageElement.src =
+      selectedProduct.image;
+
+    productImageElement.alt =
+      productName;
+
+
+    function updateTotal() {
+      const quantity =
+        Number(quantityElement.value);
+
+      const total =
+        price * quantity;
+
+      totalPriceElement.textContent =
+        `${total.toLocaleString()}円`;
+    }
+
+
+    quantityElement.addEventListener(
+      'change',
+      updateTotal
+    );
+
+    updateTotal();
+    const checkoutButton =
+  document.getElementById('checkoutButton');
+
+checkoutButton.addEventListener('click', () => {
+  const quantity = Number(quantityElement.value);
+
+  const checkoutUrl =
+    `checkout.html?product=${encodeURIComponent(productName)}` +
+    `&price=${price}` +
+    `&quantity=${quantity}`;
+
+  window.location.href = checkoutUrl;
+});
+  </script>
+
+</body>
+</html>
