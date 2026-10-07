@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご注文ありがとうございます | 齊藤商店</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      background: #faf7f2;
+      color: #29231f;
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        serif;
+    }
+
+    .success-card {
+      width: 100%;
+      max-width: 680px;
+      padding: 60px 45px;
+      background: #fff;
+      border: 1px solid #eadfD2;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 14px 40px rgba(70, 50, 30, 0.08);
+    }
+
+    .check {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #c9965b;
+      color: white;
+      font-size: 34px;
+    }
+
+    .label {
+      margin-bottom: 12px;
+      color: #b47745;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: 34px;
+      font-weight: normal;
+    }
+
+    .message {
+      margin: 0 auto;
+      max-width: 500px;
+      line-height: 2;
+      font-size: 15px;
+    }
+
+    .notice {
+      margin: 32px 0;
+      padding: 22px;
+      background: #faf7f2;
+      border-radius: 14px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .home-button {
+      display: inline-block;
+      min-width: 240px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      background: #c9965b;
+      color: white;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+
+    .home-button:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .success-card {
+        padding: 45px 24px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="success-card">
+
+    <div class="check">✓</div>
+
+    <div class="label">THANK YOU FOR YOUR ORDER</div>
+
+    <h1>ご注文ありがとうございます</h1>
+
+    <p class="message">
+      お支払いが完了しました。<br>
+      ご注文内容を確認のうえ、発送の準備を進めさせていただきます。
+    </p>
+
+    <div class="notice">
+      商品の発送まで今しばらくお待ちください。<br>
+      今後とも齊藤商店をよろしくお願いいたします。
+    </div>
+
+    <a href="index.html" class="home-button">
+      トップページへ戻る
+    </a>
+
+  </main>
+
+</body>
+</html>

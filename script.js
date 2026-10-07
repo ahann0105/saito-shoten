@@ -80,15 +80,35 @@ const products = [
     url: '#'
   },
   {
-    category: 'other',
-    name: 'ヘアゴム',
-    price: '350円',
-    image: 'images/hairband.jpeg',
-    imageAlt: 'レジンのヘアゴム',
-    placeholder: '写真を差し替え',
-    desc: '日常使いしやすいレジンのヘアゴムです。',
-    url: '#'
-  }
+  category: 'other',
+  name: 'ヘアゴム',
+  price: '350円',
+  image: 'images/hairband.jpeg',
+  imageAlt: 'レジンのヘアゴム',
+  placeholder: '写真を差し替え',
+  desc: '日常使いしやすいレジンのヘアゴムです。',
+  url: '#'
+},
+{
+  category: 'other',
+  name: 'クジラさん',
+  price: '450円',
+  image: 'images/whale.jpeg',
+  imageAlt: '王冠をかぶったクジラのレジンチャーム',
+  placeholder: 'NO IMAGE',
+  desc: '小さな王冠をかぶった、ころんとかわいいクジラのレジンチャームです。',
+  url: '#'
+},
+{
+  category: 'other',
+  name: 'キャンディーチャーム',
+  price: '500円',
+  image: 'images/candy.jpeg',
+  imageAlt: 'キャンディーモチーフのレジンチャーム',
+  placeholder: 'NO IMAGE',
+  desc: 'カラフルでかわいいキャンディーをモチーフにしたレジンチャームです。',
+  url: '#'
+}
 ];
 
 const yoyoRoot = document.getElementById('yoYoProducts');

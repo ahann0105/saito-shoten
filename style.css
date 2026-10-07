@@ -354,8 +354,10 @@ h3 { font-size: 22px; }
     height: 420px;
     border-radius: 28px;
   }
-  .gallery-item img { aspect-ratio: 1 / 1; }
-  /* ========================================
+    .gallery-item img { aspect-ratio: 1 / 1; }
+}
+
+/* ========================================
    齊藤商店 購入ページ
 ======================================== */
 
@@ -666,4 +668,211 @@ h3 { font-size: 22px; }
     margin: 4px 22px 24px;
   }
 }
+/* =========================
+   NEWS / お知らせ
+========================= */
+
+.news-section {
+  max-width: 1100px;
+  margin: 40px auto 70px;
+  padding: 0 24px;
+}
+
+.news-heading {
+  margin-bottom: 24px;
+}
+
+.news-heading .eyebrow {
+  margin-bottom: 6px;
+}
+
+.news-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.news-list {
+  border-top: 1px solid #ddd3c7;
+}
+
+.news-item {
+  display: grid;
+  grid-template-columns: 120px 100px 1fr;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 4px;
+  border-bottom: 1px solid #ddd3c7;
+}
+
+.news-item time {
+  font-size: 13px;
+  color: #7d746c;
+  letter-spacing: 0.04em;
+}
+
+.news-category {
+  display: inline-block;
+  text-align: center;
+  padding: 5px 10px;
+  border: 1px solid #cbb9a5;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #756353;
+}
+
+.news-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* スマートフォン */
+@media (max-width: 680px) {
+  .news-section {
+    margin: 25px auto 50px;
+    padding: 0 20px;
+  }
+
+  .news-item {
+    grid-template-columns: auto 1fr;
+    gap: 8px 12px;
+    padding: 16px 0;
+  }
+
+  .news-item p {
+    grid-column: 1 / -1;
+  }
+
+    .news-category {
+    justify-self: start;
+  }
+}
+
+/* =========================
+   お知らせ一覧ページ
+========================= */
+
+.news-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 24px 120px;
+}
+
+.news-page-heading {
+  margin-bottom: 55px;
+}
+
+.news-page-heading h1 {
+  margin: 0 0 14px;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 500;
+}
+
+.news-page-heading > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.news-page-list {
+  border-top: 1px solid #ddd3c7;
+}
+
+.news-page-item {
+  display: grid;
+  grid-template-columns: 120px 100px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 30px 4px;
+  border-bottom: 1px solid #ddd3c7;
+}
+
+.news-page-item time {
+  padding-top: 5px;
+  color: #7d746c;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.news-page-item h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.news-page-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.news-page-back {
+  margin-top: 45px;
+}
+
+.news-page-back a {
+  color: var(--accent-dark);
+  font-size: 14px;
+}
+
+.news-page-back a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
+  .news-page {
+    padding: 65px 20px 80px;
+  }
+
+  .news-page-heading {
+    margin-bottom: 35px;
+  }
+
+  .news-page-item {
+    grid-template-columns: auto 1fr;
+    gap: 10px 12px;
+    padding: 24px 0;
+  }
+
+  .news-page-item > div {
+    grid-column: 1 / -1;
+  }
+
+  .news-page-item .news-category {
+    justify-self: start;
+  }
+}
+/* トップページ NEWS 一覧リンク */
+
+.news-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.news-more {
+  margin-bottom: 3px;
+  color: #756353;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.news-more:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 680px) {
+  .news-heading {
+    align-items: flex-end;
+  }
+
+  .news-more {
+    font-size: 12px;
+    white-space: nowrap;
+  }
 }

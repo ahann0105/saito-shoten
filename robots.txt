@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # 公開URLが確定したら、下のURLを実際のサイトURLに変更してください。
-Sitemap: https://YOUR-SITE-URL/sitemap.xml
+Sitemap: https://saito-shoten.onrender.com/sitemap.xml

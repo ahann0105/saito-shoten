@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お客様情報入力 | 齊藤商店</title>
+  <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="style.css">
 
   <style>
@@ -329,37 +330,130 @@
   </main>
 
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
+ <script>
+  const params = new URLSearchParams(window.location.search);
 
-    const product =
-      params.get('product') || 'ヨーヨー作品 01';
+  const product =
+    params.get('product') || 'ヨーヨー作品01';
 
-    const quantity =
-      Number(params.get('quantity')) || 1;
+  const quantity =
+    Number(params.get('quantity')) || 1;
 
-    const price =
-      Number(params.get('price')) || 550;
+  const price =
+  Number((params.get('price') || '550').replace(/[^0-9]/g, '')) || 550;
 
-    const total = price * quantity;
+const total = price * quantity;
 
-    document.getElementById('summaryProduct').textContent =
-      product;
+  const productIds = {
+  'ヨーヨー作品 01': 'yoyo01',
+  'ヨーヨー作品 02': 'yoyo02',
+  'ヨーヨー作品 03': 'yoyo03',
+  'ヨーヨー作品 04': 'yoyo04',
+  'ヨーヨー作品 05': 'yoyo05',
+  'チョコレート': 'chocolate',
+  'どんぐり': 'acorn',
+  'プリン': 'pudding',
+  'ヘアゴム': 'hairband',
+  'クジラさん': 'whale',
+  'キャンディーチャーム': 'candy'
+};
 
-    document.getElementById('summaryQuantity').textContent =
-      `${quantity}個`;
+  document.getElementById('summaryProduct').textContent =
+    product;
 
-    document.getElementById('summaryTotal').textContent =
-      `${total.toLocaleString()}円`;
+  document.getElementById('summaryQuantity').textContent =
+    `${quantity}個`;
 
-    document
-      .getElementById('customerForm')
-      .addEventListener('submit', (event) => {
-        event.preventDefault();
+  document.getElementById('summaryTotal').textContent =
+    `${total.toLocaleString()}円`;
 
-        alert('次のステップでStripe決済に接続します。');
-      });
-  </script>
+  document
+    .getElementById('customerForm')
+    .addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const productId = productIds[product];
+
+      if (!productId) {
+        alert('商品情報を確認できませんでした。');
+        return;
+      }
+
+      const submitButton =
+        event.currentTarget.querySelector('button[type="submit"]');
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = '決済画面を準備しています...';
+      }
+
+      try {
+        const response = await fetch(
+          'https://pxpixzoorgvosuyysvju.supabase.co/functions/v1/create-checkout-session',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              product: productId,
+              quantity: quantity
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.url) {
+          throw new Error(data.error || '決済画面を作成できませんでした。');
+        }
+
+        window.location.href = data.url;
+
+      } catch (error) {
+        console.error(error);
+        alert('決済画面を開けませんでした。もう一度お試しください。');
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'お支払いへ進む';
+        }
+      }
+    });
+    const postalCodeInput = document.getElementById('postalCode');
+const prefectureInput = document.getElementById('prefecture');
+const cityInput = document.getElementById('city');
+
+postalCodeInput.addEventListener('input', async () => {
+  const postalCode = postalCodeInput.value.replace(/[^0-9]/g, '');
+
+  if (postalCode.length !== 7) {
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`
+    );
+
+    const data = await response.json();
+
+    if (data.results && data.results.length > 0) {
+      const address = data.results[0];
+
+      prefectureInput.value = address.address1;
+      cityInput.value = address.address2 + address.address3;
+
+      document.getElementById('address1').focus();
+    } else {
+      alert('住所が見つかりませんでした。郵便番号をご確認ください。');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('住所の検索に失敗しました。手動で住所を入力してください。');
+  }
+});
+</script>
 
 </body>
 </html>
