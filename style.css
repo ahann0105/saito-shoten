@@ -116,7 +116,7 @@ h3 { font-size: 22px; }
 
 .section { padding: 80px 8vw; }
 .intro {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
   color: var(--muted);
