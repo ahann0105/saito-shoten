@@ -83,7 +83,7 @@ h1, h2, h3 {
   line-height: 1.45;
   margin: 0 0 18px;
 }
-h1 { font-size: clamp(40px, 6vw, 76px); letter-spacing: .05em; }
+h1 { font-size: clamp(36px, 4vw, 56px); letter-spacing: .03em; }
 h2 { font-size: clamp(28px, 4vw, 42px); }
 h3 { font-size: 22px; }
 .lead { color: var(--muted); font-size: 18px; max-width: 520px; }
