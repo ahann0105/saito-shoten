@@ -68,11 +68,13 @@
     }
 
     .checkout-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 45px;
-      align-items: start;
-    }
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 650px;
+  margin: 0 auto;
+  gap: 45px;
+  align-items: start;
+}
 
     .checkout-card {
       padding: 32px;
@@ -200,93 +202,11 @@
 
   <main class="checkout-main">
 
-    <p class="checkout-eyebrow">ORDER INFORMATION</p>
-    <h1>お客様情報入力</h1>
+    <p class="checkout-eyebrow">ORDER CONFIRMATION</p>
+<h1>ご注文内容の確認</h1>
     <div class="checkout-line"></div>
 
     <div class="checkout-layout">
-
-      <section class="checkout-card">
-        <h2>配送先情報</h2>
-
-        <form id="customerForm">
-
-          <div class="form-group">
-            <label>
-              お名前
-              <span class="required">必須</span>
-            </label>
-            <input type="text" id="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label>
-              メールアドレス
-              <span class="required">必須</span>
-            </label>
-            <input type="email" id="customerEmail" required>
-          </div>
-
-          <div class="form-group">
-            <label>
-              電話番号
-              <span class="required">必須</span>
-            </label>
-            <input
-              type="tel"
-              id="customerPhone"
-              placeholder="09012345678"
-              required
-            >
-          </div>
-
-          <div class="form-group">
-            <label>
-              郵便番号
-              <span class="required">必須</span>
-            </label>
-            <input
-              type="text"
-              id="postalCode"
-              placeholder="4300000"
-              inputmode="numeric"
-              required
-            >
-          </div>
-
-          <div class="address-row">
-            <div class="form-group">
-              <label>
-                都道府県
-                <span class="required">必須</span>
-              </label>
-              <input type="text" id="prefecture" required>
-            </div>
-
-            <div class="form-group">
-              <label>
-                市区町村
-                <span class="required">必須</span>
-              </label>
-              <input type="text" id="city" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>
-              番地
-              <span class="required">必須</span>
-            </label>
-            <input type="text" id="address1" required>
-          </div>
-
-          <div class="form-group">
-            <label>建物名・部屋番号</label>
-            <input type="text" id="address2">
-          </div>
-
-        </form>
-      </section>
 
 
       <aside class="checkout-card">
@@ -313,13 +233,13 @@
         </div>
 
         <button
-          type="submit"
-          form="customerForm"
-          class="payment-button"
-        >
-          <span>決済へ進む</span>
-          <span>→</span>
-        </button>
+  type="button"
+  id="checkoutButton"
+  class="payment-button"
+>
+  <span>決済へ進む</span>
+  <span>›</span>
+</button>
 
         <p class="checkout-note">
           入力内容をご確認のうえ、決済へお進みください。
@@ -368,9 +288,8 @@ const total = price * quantity;
     `${total.toLocaleString()}円`;
 
   document
-    .getElementById('customerForm')
-    .addEventListener('submit', async (event) => {
-      event.preventDefault();
+  .getElementById('checkoutButton')
+  .addEventListener('click', async (event) => {
 
       const productId = productIds[product];
 
@@ -379,8 +298,7 @@ const total = price * quantity;
         return;
       }
 
-      const submitButton =
-        event.currentTarget.querySelector('button[type="submit"]');
+      const submitButton = event.currentTarget;
 
       if (submitButton) {
         submitButton.disabled = true;
@@ -420,39 +338,6 @@ const total = price * quantity;
         }
       }
     });
-    const postalCodeInput = document.getElementById('postalCode');
-const prefectureInput = document.getElementById('prefecture');
-const cityInput = document.getElementById('city');
-
-postalCodeInput.addEventListener('input', async () => {
-  const postalCode = postalCodeInput.value.replace(/[^0-9]/g, '');
-
-  if (postalCode.length !== 7) {
-    return;
-  }
-
-  try {
-    const response = await fetch(
-      `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`
-    );
-
-    const data = await response.json();
-
-    if (data.results && data.results.length > 0) {
-      const address = data.results[0];
-
-      prefectureInput.value = address.address1;
-      cityInput.value = address.address2 + address.address3;
-
-      document.getElementById('address1').focus();
-    } else {
-      alert('住所が見つかりませんでした。郵便番号をご確認ください。');
-    }
-  } catch (error) {
-    console.error(error);
-    alert('住所の検索に失敗しました。手動で住所を入力してください。');
-  }
-});
 </script>
 
 </body>
