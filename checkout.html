@@ -241,9 +241,35 @@
   <span>›</span>
 </button>
 
-        <p class="checkout-note">
-          入力内容をご確認のうえ、決済へお進みください。
-        </p>
+        
+<div class="checkout-note">
+  <p><strong>ご購入前にご確認ください</strong></p>
+
+  <p>
+    【発送について】<br>
+    お支払い確認後、原則14日以内に発送いたします。
+  </p>
+
+  <p>
+    【キャンセル・返品について】<br>
+    在庫商品は発送前まで、受注制作商品は
+    制作開始前までキャンセル可能です。<br>
+    お客様都合による商品到着後の返品・交換は
+    お受けしておりません。
+  </p>
+
+  <p>
+    <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    ・
+    <a href="returns.html">返品・交換について</a>
+  </p>
+
+  <p>
+    ご注文内容をご確認のうえ、
+    決済画面へお進みください。
+  </p>
+</div>
+
       </aside>
 
     </div>
@@ -256,20 +282,51 @@
   const product =
     params.get('product') || 'ヨーヨー作品01';
 
-  const quantity =
-    Number(params.get('quantity')) || 1;
+  
+const requestedQuantity = Number(params.get('quantity') || '1');
 
-  const price =
-  Number((params.get('price') || '550').replace(/[^0-9]/g, '')) || 550;
+const quantity =
+  Number.isInteger(requestedQuantity) &&
+  requestedQuantity >= 1 &&
+  requestedQuantity <= 20
+    ? requestedQuantity
+    : 1;
 
+
+  
+const productPrices = {
+  'ヨーヨー作品01': 550,
+  'ヨーヨー作品02': 550,
+  'ヨーヨー作品03': 550,
+  'ヨーヨー作品04': 550,
+  'ヨーヨー作品05': 550,
+  'チョコレート': 550,
+  'どんぐり': 500,
+  'プリン': 550,
+  'ヘアゴム': 350,
+  'クジラさん': 450,
+  'キャンディーチャーム': 450
+};
+
+
+const price = productPrices[product];
 const total = price * quantity;
 
+if (price === undefined) {
+  document.getElementById('summaryTotal').textContent =
+    '商品情報を確認できません';
+
+  document.getElementById('checkoutButton').disabled = true;
+}
+
+
+
   const productIds = {
-  'ヨーヨー作品 01': 'yoyo01',
-  'ヨーヨー作品 02': 'yoyo02',
-  'ヨーヨー作品 03': 'yoyo03',
-  'ヨーヨー作品 04': 'yoyo04',
-  'ヨーヨー作品 05': 'yoyo05',
+  'ヨーヨー作品01': 'yoyo01',
+  'ヨーヨー作品02': 'yoyo02',
+  'ヨーヨー作品03': 'yoyo03',
+  'ヨーヨー作品04': 'yoyo04',
+  'ヨーヨー作品05': 'yoyo05',
   'チョコレート': 'chocolate',
   'どんぐり': 'acorn',
   'プリン': 'pudding',
@@ -284,8 +341,12 @@ const total = price * quantity;
   document.getElementById('summaryQuantity').textContent =
     `${quantity}個`;
 
+  
+if (price !== undefined) {
   document.getElementById('summaryTotal').textContent =
     `${total.toLocaleString()}円`;
+}
+
 
   document
   .getElementById('checkoutButton')
