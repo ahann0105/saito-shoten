@@ -446,7 +446,7 @@ if (price !== undefined) {
 
       } catch (error) {
         console.error(error);
-        alert('決済画面を開けませんでした。もう一度お試しください。');
+        alert(error.message || '決済画面を開けませんでした。もう一度お試しください。');
 
         if (submitButton) {
           submitButton.disabled = false;
