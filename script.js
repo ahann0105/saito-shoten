@@ -72,7 +72,7 @@ const products = [
   {
     category: 'other',
     name: 'プリン',
-    price: '550円',
+    price: '500円',
     image: 'images/ice_cream.jpeg',
     imageAlt: 'プリンのレジン作品',
     placeholder: '写真を差し替え',
